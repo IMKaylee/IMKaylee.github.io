@@ -5,7 +5,7 @@
 </head>
 
 <BODY BGCOLOR=Linen TEXT=Black>
-</body>
+
 
 <h1>
 All About <font color=red>K</font><font color=orange>a</font><font color=gold>y</font><font color= green>l</font><font color= blue>e</font><font color=purple>e</font>
@@ -127,9 +127,116 @@ Here are some cool links you should look at!
   <input type="submit" value="Submit"><br>  
 </form>
 
-<br>
-</br>
+<div style="margin-left: auto; margin-right: auto; margin-top: 40px;
+padding: 20px; width: 500px; font-size: 16px; font-family:'Segoe UI', sans-serif;">
+Cat-Bot🐱
 
+<div style=" margin-top:6px; padding: 20px; background-color: #E1F4FB;
+border: 4px solid #8ec8df; border-radius: 25px;">
+
+<form name="chatForm">
+    <p id="botSays">What is your name ? </p>
+    <br>         
+    <input type="text" name="userInput" >
+    <input type="button" value="Send" onClick="displayFeedback(this.form)">
+
+</form>
+</div>
+</div>  
+
+<script>
+
+var counter=0;
+var totalQuestions=5;
+
+var myGraduationYear= 2027;
+var myMajor="CS and a Studio Arts minor";
+var myfav= "Rob Zombie";
+
+//create a list of the majors you are/ were interested in
+var majorInterestedList=["Studio Arts", "psychology", "CS", "Film studies" ];
+var FavArtistsList= ["Tyler the creator", "Dominic Fike", "Men I Trust", "Destroy Boys"];
+
+var userName;
+
+    function displayFeedback(form) {
+
+        counter++;
+
+        var feedbackText="";
+        var newQuestionText="";
+
+        var userInput= form.userInput.value;
+
+        if (counter==1) {        
+            userName= userInput;
+            feedbackText="Hello, "+ userName+" ! " +"<br>Nice to meet you."+
+            "I am Sir Bottoms, a cat.";
+
+            newQuestionText="Do you also attend Mount Holyoke College ?";              
+        }
+
+        if (counter==2) {        
+            feedbackText="Thanks for sharing."; 
+            newQuestionText="What is your major?";              
+        }
+
+        if (counter==3) {     
+            if (userInput.toLowerCase()== myMajor) feedbackText="Great! I am also majoring in "+ userInput+"."; 
+            
+            else {
+                feedbackText="I guess you must find "+userInput+" very interesting."+" I am majoring in "+myMajor;
+                
+                //check if user's major is one the majors in your majorInterestedList 
+                for (let i = 0; i < majorInterestedList.length; i++) {      
+                    if (userInput.toLowerCase() == majorInterestedList[i]) {
+                        feedbackText=userInput+ " was one of the majors I was interested to pursue."+
+                        " I am now majoring in "+myMajor+".";
+                    }    
+                }
+        
+    
+
+        newQuestionText="When are you graduating ?"; 
+        }
+    }
+        if (counter==4) {     
+            if (userInput== myGraduationYear) feedbackText="I am also graduating the same year ! ";  
+            else if (userInput< myGraduationYear) feedbackText="Nice. You will be graduating earlier than me."; 
+            else if (userInput> myGraduationYear) feedbackText="Nice. I will be graduating in "+ myGraduationYear+", a bit later than you.";
+            else feedbackText="Thanks for sharing.";
+            
+            newQuestionText="Who's your favorite artist?";
+        }
+        
+        if (counter==5) {     
+            if (userInput.toLowerCase()== myfav) feedbackText="Great! I also love "+ userInput+"."; 
+            
+            else {
+                feedbackText="Woah, I think  "+userInput+" is very interesting."+" I will give them a listen."+ "My fav artist is " +myfav;
+                
+                //check if user's major is one the majors in your majorInterestedList 
+                for (let i = 0; i < FavArtistsList.length; i++) {      
+                    if (userInput.toLowerCase() == FavArtistsList[i]) {
+                        feedbackText="I also like "+userInput+ "."+ " My all time fav artist is " + myfav; 
+                    }    
+                }
+        }
+    }
+
+        //if you have reached the last question
+        if (counter>=totalQuestions ) {
+            feedbackText=feedbackText+"<br><br>It was nice talking to you, "+userName+"."+
+            "<br>I hope you have a great day!";           
+        }
+      
+        //update the feedback and clear the input box
+        document.getElementById("botSays").innerHTML = feedbackText+ "<br><br>"+newQuestionText;   
+        form.userInput.value=""; 
+    }
+
+</script>
+</body>
 &copy; MHC
 
 </html>
